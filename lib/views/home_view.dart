@@ -33,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(color: Colors.black),
                   );
                 }
                 return ListView.separated(
@@ -41,12 +41,23 @@ class _HomeViewState extends State<HomeView> {
                     return ListTile(
                       title: Text(
                         '${snapshot.data?[index].title}',
-                        style: GoogleFonts.poppins(),
+                        style: GoogleFonts.poppins(
+                            fontSize: 14, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
                         '${snapshot.data?[index].description}',
-                        style: GoogleFonts.poppins(),
+                        style: GoogleFonts.poppins(fontSize: 10),
                       ),
+                      leading: snapshot.data?[index].urlToImage != null
+                          ? CircleAvatar(
+                              maxRadius: 50,
+                              child: Image.network(
+                                snapshot.data![index].urlToImage,
+                                fit: BoxFit.cover,
+                                filterQuality: FilterQuality.high,
+                              ),
+                            )
+                          : const SizedBox(),
                     );
                   },
                   separatorBuilder: (context, index) =>
@@ -61,18 +72,3 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-
-
-
-// leading: snapshot.data?[index].urlToImage != null
-//                           ? Container(
-//                               width: 100,
-//                               decoration: BoxDecoration(
-//                                 borderRadius: BorderRadius.circular(20),
-//                                 image: DecorationImage(
-//                                   image: NetworkImage(
-//                                       snapshot.data![index].urlToImage),
-//                                 ),
-//                               ),
-//                             )
-//                           : const SizedBox(),
