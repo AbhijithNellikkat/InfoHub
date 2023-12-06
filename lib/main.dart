@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/views/home_view.dart';
+import 'package:news_app/controller/theme_controller.dart';
+import 'package:provider/provider.dart';
+
+import 'views/splash_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,11 +21,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'New App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const HomeView(),
+      theme: Provider.of<ThemeProvider>(context).themeData,
+      // theme: ThemeData(
+      //   colorScheme: ColorScheme.fromSeed(
+      //     seedColor: Colors.white,
+      //     primary: Colors.black,
+      //   ),
+      //   useMaterial3: true,
+      // ),
+      home: const SplashView(),
     );
   }
 }
