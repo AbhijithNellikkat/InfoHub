@@ -14,17 +14,32 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        actions: const [
-          ThemeSwitchButton(),
-        ],
-      ),
-      body: SafeArea(
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'InfoHub',
+                      style: GoogleFonts.poppins(
+                          fontSize: 22, fontWeight: FontWeight.w600),
+                    ),
+                    const ThemeSwitchButton()
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        appBar: AppBar(
+          elevation: 0,
+        ),
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(height: 20),

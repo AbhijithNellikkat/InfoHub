@@ -8,15 +8,18 @@ class ThemeProvider extends ChangeNotifier {
     useMaterial3: true,
     // Light theme configuration
     brightness: Brightness.light,
-    primaryColor: Colors.black,
+    primaryColor: Colors.blue, // Change to your desired color
+    hintColor: Colors.blueAccent, // Change to your desired color
+    // Add other light theme configurations here
   );
 
   static final ThemeData _darkTheme = ThemeData(
     useMaterial3: true,
     // Dark theme configuration
     brightness: Brightness.dark,
-    primaryColor: Colors.white,
-    
+    primaryColor: Colors.orange, // Change to your desired color
+    hintColor: Colors.orangeAccent, // Change to your desired color
+    // Add other dark theme configurations here
   );
 
   ThemeData get themeData => _themeData;
