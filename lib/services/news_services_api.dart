@@ -8,20 +8,21 @@ class NewsApiServices {
 
   final String url =
       "https://newsapi.org/v2/top-headlines?country=in&apiKey=$apiKey";
-  late Dio dio;
-  NewsApiServices() {
-    dio = Dio();
-  }
+   Dio dio= Dio();
 
-  Future<List<Article>> fetchNewsArticle() async {
+  Future<List<Article>?> fetchNewsArticle() async {
     try {
       Response response = await dio.get(url);
-      News newsResponse = News.fromJson(response.data);
+      print(url);
+      
+      NewsModel newsResponse = NewsModel.fromJson(response.data);
+      print(newsResponse);
       return newsResponse.articles;
+
       // ignore: deprecated_member_use
     } on DioError catch (e) {
       log('$e');
-      return [];
+      return null;
     }
   }
 }

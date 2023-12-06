@@ -1,25 +1,25 @@
 // To parse this JSON data, do
 //
-//     final news = newsFromJson(jsonString);
+//     final newsModel = newsModelFromJson(jsonString);
 
 import 'dart:convert';
 
-News newsFromJson(String str) => News.fromJson(json.decode(str));
+NewsModel newsModelFromJson(String str) => NewsModel.fromJson(json.decode(str));
 
-String newsToJson(News data) => json.encode(data.toJson());
+String newsModelToJson(NewsModel data) => json.encode(data.toJson());
 
-class News {
+class NewsModel {
     String status;
     int totalResults;
     List<Article> articles;
 
-    News({
+    NewsModel({
         required this.status,
         required this.totalResults,
         required this.articles,
     });
 
-    factory News.fromJson(Map<String, dynamic> json) => News(
+    factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
         status: json["status"],
         totalResults: json["totalResults"],
         articles: List<Article>.from(json["articles"].map((x) => Article.fromJson(x))),
@@ -36,9 +36,9 @@ class Article {
     Source source;
     String? author;
     String title;
-    String description;
+    String? description;
     String url;
-    String urlToImage;
+    String? urlToImage;
     DateTime publishedAt;
     String? content;
 
@@ -77,7 +77,7 @@ class Article {
 }
 
 class Source {
-    String? id;
+    dynamic id;
     String name;
 
     Source({

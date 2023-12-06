@@ -28,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           const SizedBox(height: 20),
           Expanded(
-            child: FutureBuilder<List<Article>>(
+            child: FutureBuilder<List<Article> ?>(
               future: NewsApiServices().fetchNewsArticle(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
@@ -52,7 +52,7 @@ class _HomeViewState extends State<HomeView> {
                           ? CircleAvatar(
                               maxRadius: 50,
                               child: Image.network(
-                                snapshot.data![index].urlToImage,
+                                snapshot.data![index].urlToImage!,
                                 fit: BoxFit.cover,
                                 filterQuality: FilterQuality.high,
                               ),
